@@ -6,33 +6,33 @@ function Server() {
     http.Server.call(this);
 
     this.requests = Rx.Observable
-        .fromEvent(this, "request", function(args) {
-            return { request: args[0], response: args[1] };
+        .fromEvent(this, "request", function() {
+            return { request: arguments[0], response: arguments[1] };
         });
 
     this.closes = Rx.Observable
-        .fromEvent(this, "close", function(args) {
+        .fromEvent(this, "close", function() {
             return true;
         });
 
     this.checkContinues = Rx.Observable
-        .fromEvent(this, "checkContinue", function(args) {
-            return { request: args[0], response: args[1] };
+        .fromEvent(this, "checkContinue", function() {
+            return { request: arguments[0], response: arguments[1] };
         });
 
     this.connects = Rx.Observable
-        .fromEvent(this, "connect", function(args) {
-            return { request: args[0], socket: args[1], head: args[2] };
+        .fromEvent(this, "connect", function() {
+            return { request: arguments[0], socket: arguments[1], head: arguments[2] };
         });
 
     this.upgrades = Rx.Observable
-        .fromEvent(this, "upgrade", function(args) {
-            return { request: args[0], socket: args[1], head: args[2] };
+        .fromEvent(this, "upgrade", function() {
+            return { request: arguments[0], socket: arguments[1], head: arguments[2] };
         });
 
     this.clientErrors = Rx.Observable
-        .fromEvent(this, "clientError", function(args) {
-            return { exception: args[0], socket: args[1] };
+        .fromEvent(this, "clientError", function() {
+            return { exception: arguments[0], socket: arguments[1] };
         });
 }
 
